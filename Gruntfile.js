@@ -285,7 +285,7 @@ module.exports = function (grunt) {
     absolute: {
       dist: {
         src: '<%= yeoman.dist %>/dfp.html',
-        path: '/wp-srv/ad/public/enterprise-ad-template/',
+        path: '/wp-srv/ad/public/enterprise-ad-template/dist/',
         www: 'http://www.washingtonpost.com',
         css: 'http://css.washingtonpost.com',
         img: 'http://img.wpdigital.net',
