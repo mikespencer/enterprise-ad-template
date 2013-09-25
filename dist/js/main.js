@@ -63,7 +63,8 @@ wpAd.Enterprise = (function($){
       breakPoint: 768,
       creative: '',
       width: 300,
-      height: 250
+      height: 250,
+      clickTag: ''
     }
   };
 
@@ -151,7 +152,7 @@ wpAd.Enterprise = (function($){
         target: '_blank'
       }).css({
         display: 'block',
-        width: '100%',
+        maxWidth: this.config.width + 'px',
         height: this.config.height + 'px',
         zIndex: 10,
         textDecoration: 'none',

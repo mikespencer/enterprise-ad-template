@@ -46,27 +46,30 @@
       clickTracker: '',
       clickTrackerEsc: '',
       clickTag: 'http://www.example.com',
-      target: '#slug_leaderboard',
-      parallax: true,
-      creative: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise.jpg',
+      creative: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise.jpg' || '',
       width: 1170,
       height: 460,
+      target: '#slug_leaderboard',
+      parallax: true,
       backgroundColor: '#fff',
       bannerCSS: {},
       bannerHTML: '<a href="#">Some text here</a>',
       mobile: {
         breakPoint: 768,
-        creative: 'http://www.placehold.it/300x250',
+        creative: 'http://www.placehold.it/300x250' || '',
         width: 300,
-        height: 250
+        height: 250,
+        clickTag: ''
       }
     };
 
     
 
-    $(window).load(function(){
-      wpAd.enterprise = new wpAd.Enterprise(config);
-    });
+    if($){
+      $(window).load(function(){
+        wpAd.enterprise = new wpAd.Enterprise(config);
+      });
+    }
 
   })(window.jQuery);
 </script>

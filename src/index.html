@@ -41,27 +41,30 @@
       clickTracker: '<%= clickTracker %>',
       clickTrackerEsc: '<%= clickTrackerEsc %>',
       clickTag: '<%= clickTag %>',
-      target: '<%= target %>',
-      parallax: <%= parallax %>,
-      creative: '<%= creative %>',
+      creative: '<%= creative %>' || '<%= creativeURL %>',
       width: <%= width %>,
       height: <%= height %>,
+      target: '<%= target %>',
+      parallax: <%= parallax %>,
       backgroundColor: '<%= backgroundColor %>',
       bannerCSS: {<%= bannerCSS %>},
       bannerHTML: '<%= bannerHTML %>',
       mobile: {
         breakPoint: <%= mobile.breakPoint %>,
-        creative: '<%= mobile.creative %>',
+        creative: '<%= mobile.creative %>' || '<%= mobile.creativeURL %>',
         width: <%= mobile.width %>,
-        height: <%= mobile.height %>
+        height: <%= mobile.height %>,
+        clickTag: '<%= mobile.clickTag %>'
       }
     };
 
     <%= jsOverrides %>
 
-    $(window).load(function(){
-      wpAd.enterprise = new wpAd.Enterprise(config);
-    });
+    if($){
+      $(window).load(function(){
+        wpAd.enterprise = new wpAd.Enterprise(config);
+      });
+    }
 
   })(window.jQuery);
 </script>

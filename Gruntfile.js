@@ -93,6 +93,7 @@ module.exports = function (grunt) {
               target: '[%Target%]',
               parallax: '[%Parallax%]',
               creative: '[%Creative%]',
+              creativeURL: '[%CreativeURL%]',
               width: '[%Width%]',
               height: '[%Height%]',
               backgroundColor: '[%BackgroundColor%]',
@@ -101,10 +102,12 @@ module.exports = function (grunt) {
               mobile: {
                 breakPoint: '[%MobileBreakpoint%]',
                 creative: '[%MobileCreative%]',
+                creativeURL: '[%MobileCreativeURL%]',
                 width: '[%MobileWidth%]',
-                height: '[%MobileHeight%]'
+                height: '[%MobileHeight%]',
+                clickTag: '[%MobileClickTag%]'
               },
-              jsOverrides: '[%JSOverrides]'
+              jsOverrides: '[%JSOverrides%]'
             }
           }
         },
@@ -124,6 +127,7 @@ module.exports = function (grunt) {
               target: '#slug_leaderboard',
               parallax: 'true',
               creative: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise.jpg',
+              creativeURL: '',
               width: '1170',
               height: '460',
               backgroundColor: '#fff',
@@ -132,8 +136,10 @@ module.exports = function (grunt) {
               mobile: {
                 breakPoint: '768',
                 creative: 'http://www.placehold.it/300x250',
+                creativeURL: '',
                 width: '300',
-                height: '250'
+                height: '250',
+                clickTag: ''
               },
               jsOverrides: ''
             }
