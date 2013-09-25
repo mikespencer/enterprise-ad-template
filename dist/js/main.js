@@ -172,7 +172,7 @@ wpAd.Enterprise = (function($){
     buildMobileAd: function(){
       this.$container.empty();
       this.$creative = $('<a></a>').addClass('enterprise-mobile-ad').attr({
-        href: this.config.clickTracker + this.config.clickTag,
+        href: this.config.clickTracker + (this.config.mobile.clickTag || this.config.clickTag),
         target: '_blank'
       }).css({
         width: this.config.mobile.width + 'px',
