@@ -1,0 +1,45 @@
+/* line 52, ../../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+.enterprise-ad-container div, .enterprise-ad-container span, .enterprise-ad-container applet, .enterprise-ad-container object, .enterprise-ad-container iframe,
+.enterprise-ad-container h1, .enterprise-ad-container h2, .enterprise-ad-container h3, .enterprise-ad-container h4, .enterprise-ad-container h5, .enterprise-ad-container h6, .enterprise-ad-container p, .enterprise-ad-container blockquote, .enterprise-ad-container pre,
+.enterprise-ad-container a, .enterprise-ad-container abbr, .enterprise-ad-container acronym, .enterprise-ad-container address, .enterprise-ad-container big, .enterprise-ad-container cite, .enterprise-ad-container code,
+.enterprise-ad-container del, .enterprise-ad-container dfn, .enterprise-ad-container em, .enterprise-ad-container img, .enterprise-ad-container ins, .enterprise-ad-container kbd, .enterprise-ad-container q, .enterprise-ad-container s, .enterprise-ad-container samp,
+.enterprise-ad-container small, .enterprise-ad-container strike, .enterprise-ad-container strong, .enterprise-ad-container sub, .enterprise-ad-container sup, .enterprise-ad-container tt, .enterprise-ad-container var,
+.enterprise-ad-container b, .enterprise-ad-container u, .enterprise-ad-container i, .enterprise-ad-container center,
+.enterprise-ad-container dl, .enterprise-ad-container dt, .enterprise-ad-container dd, .enterprise-ad-container ol, .enterprise-ad-container ul, .enterprise-ad-container li,
+.enterprise-ad-container fieldset, .enterprise-ad-container form, .enterprise-ad-container label, .enterprise-ad-container legend,
+.enterprise-ad-container table, .enterprise-ad-container caption, .enterprise-ad-container tbody, .enterprise-ad-container tfoot, .enterprise-ad-container thead, .enterprise-ad-container tr, .enterprise-ad-container th, .enterprise-ad-container td,
+.enterprise-ad-container article, .enterprise-ad-container aside, .enterprise-ad-container canvas, .enterprise-ad-container details, .enterprise-ad-container embed,
+.enterprise-ad-container figure, .enterprise-ad-container figcaption, .enterprise-ad-container footer, .enterprise-ad-container header, .enterprise-ad-container hgroup,
+.enterprise-ad-container menu, .enterprise-ad-container nav, .enterprise-ad-container output, .enterprise-ad-container ruby, .enterprise-ad-container section, .enterprise-ad-container summary,
+.enterprise-ad-container time, .enterprise-ad-container mark, .enterprise-ad-container audio, .enterprise-ad-container video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+/* line 55, ../../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+.enterprise-ad-container table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* line 57, ../../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+.enterprise-ad-container caption, .enterprise-ad-container th, .enterprise-ad-container td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+/* line 59, ../../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+.enterprise-ad-container q, .enterprise-ad-container blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+.enterprise-ad-container q:before, .enterprise-ad-container q:after, .enterprise-ad-container blockquote:before, .enterprise-ad-container blockquote:after {
+  content: "";
+  content: none;
+}
+/* line 61, ../../../../.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+.enterprise-ad-container a img {
+  border: none;
+}

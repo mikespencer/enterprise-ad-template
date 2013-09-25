@@ -1,0 +1,47 @@
+<!-- AD ID: %eaid! -->
+<!-- 1170x460 |  - Enterprise Ad Template -->
+
+<link rel="stylesheet" href="http://css.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/css/style.min.css">
+
+<script>
+  window.jQuery || document.write('<script src="http://js.washingtonpost.com/wpost/js/combo?token=20121010232000&c=true&m=true&context=eidos&r=/jquery-1.7.1.js"><\/script>');
+</script>
+
+<script>
+  var wpAd = wpAd || {};
+  (function($){
+    'use strict';
+
+    //Ad config
+    var config = {
+      adid: parseInt('%eaid!', 10) || false,
+      clickTracker: '%%CLICK_URL_UNESC%%',
+      clickTrackerEsc: '%%CLICK_URL_ESC%%',
+      clickTag: '%%DEST_URL%%',
+      target: '[%Target%]',
+      parallax: [%Parallax%],
+      creative: '[%Creative%]',
+      width: [%Width%],
+      height: [%Height%],
+      backgroundColor: '[%BackgroundColor%]',
+      bannerCSS: {[%BannerCSS%]},
+      bannerHTML: '[%BannerHTML%]',
+      mobile: {
+        breakPoint: [%MobileBreakpoint%],
+        creative: '[%MobileCreative%]',
+        width: [%MobileWidth%],
+        height: [%MobileHeight%]
+      }
+    };
+
+    [%JSOverrides]
+
+    $(window).load(function(){
+      wpAd.enterprise = new wpAd.Enterprise(config);
+    });
+
+  })(window.jQuery);
+</script>
+
+
+<script src="http://js.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/js/main.min.js" async="true"></script>

@@ -1,0 +1,72 @@
+<!--build:css(src) css/style.min.css-->
+<link rel="stylesheet" href="css/style.css">
+<!--endbuild-->
+<div class="dev-element">
+
+  <h1>Cras justo odio</h1>
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+  <p>Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+
+  <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+
+  <div id="slug_leaderboard">
+    <!-- test target for enterprise ad -->
+  </div>
+
+  <h2>Cras justo odio</h2>
+
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+  <p>Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+
+  <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+</div>
+<script>
+  window.jQuery || document.write('<script src="http://js.washingtonpost.com/wpost/js/combo?token=20121010232000&c=true&m=true&context=eidos&r=/jquery-1.7.1.js"><\/script>');
+</script>
+
+<script>
+  var wpAd = wpAd || {};
+  (function($){
+    'use strict';
+
+    //Ad config
+    var config = {
+      adid: parseInt('%eaid!', 10) || false,
+      clickTracker: '<%= clickTracker %>',
+      clickTrackerEsc: '<%= clickTrackerEsc %>',
+      clickTag: '<%= clickTag %>',
+      target: '<%= target %>',
+      parallax: <%= parallax %>,
+      creative: '<%= creative %>',
+      width: <%= width %>,
+      height: <%= height %>,
+      backgroundColor: '<%= backgroundColor %>',
+      bannerCSS: {<%= bannerCSS %>},
+      bannerHTML: '<%= bannerHTML %>',
+      mobile: {
+        breakPoint: <%= mobile.breakPoint %>,
+        creative: '<%= mobile.creative %>',
+        width: <%= mobile.width %>,
+        height: <%= mobile.height %>
+      }
+    };
+
+    <%= jsOverrides %>
+
+    $(window).load(function(){
+      wpAd.enterprise = new wpAd.Enterprise(config);
+    });
+
+  })(window.jQuery);
+</script>
+
+
+<!--build:js js/main.min.js-->
+<script src="js/main.js" async></script>
+<!--endbuild-->
