@@ -157,7 +157,7 @@ wpAd.Enterprise = (function($){
         zIndex: 10,
         textDecoration: 'none',
         position: 'relative',
-        background: this.config.backgroundColor + ' url(' + this.config.creative + ') no-repeat center top ' + (this.config.parallax ? 'fixed' : 'scroll')
+        background: this.config.backgroundColor + ' url(' + this.config.creative + ') no-repeat center center ' + (this.config.parallax ? 'fixed' : 'scroll')
       }).appendTo(this.$container);
 
       if(this.config.bannerHTML){
