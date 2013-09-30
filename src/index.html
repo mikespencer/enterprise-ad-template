@@ -12,7 +12,7 @@
 
   <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
 
-  <div id="slug_leaderboard" style="width:1170px;margin:0 auto;">
+  <div id="slug_leaderboard" style="width:auto;margin:0 auto;">
     <!-- test target for enterprise ad -->
   </div>
 
@@ -41,21 +41,54 @@
       clickTracker: '<%= clickTracker %>',
       clickTrackerEsc: '<%= clickTrackerEsc %>',
       clickTag: '<%= clickTag %>',
-      creative: '<%= creative %>' || '<%= creativeURL %>',
-      width: <%= width %>,
-      height: <%= height %>,
+      creative: {
+        // <= 767px, use mobile bigbox
+        _767: {
+          url: '<%= mobileCreative %>' || '<%= mobileCreativeURL %>',
+          parallax: false,
+          width: 300,
+          height: 250,
+          banner: false
+        },
+        // > 767px && <= 940px, use 940px creative
+        _940: {
+          url: '<%= creative940 %>' || '<%= creative940URL %>',
+          height: <%= height %>,
+          width: 940,
+          parallax: true,
+          banner: true,
+          bannerCSS: {
+            //custom css overrides for this size here
+          }
+        },
+        // >= 940px, use 1170px creative
+        _1170: {
+          url: '<%= creative1170 %>' || '<%= creative1170URL %>',
+          height: <%= height %>,
+          width: 1170,
+          parallax: true,
+          banner: true,
+          bannerCSS: {
+            //custom css overrides for this size here
+          }
+        }
+      },
       target: '<%= target %>',
-      parallax: <%= parallax %>,
       backgroundColor: '<%= backgroundColor %>',
-      bannerCSS: {<%= bannerCSS %>},
       bannerHTML: '<%= bannerHTML %>',
-      mobile: {
-        breakPoint: <%= mobile.breakPoint %>,
-        creative: '<%= mobile.creative %>' || '<%= mobile.creativeURL %>',
-        width: <%= mobile.width %>,
-        height: <%= mobile.height %>,
-        clickTag: '<%= mobile.clickTag %>'
-      }
+      bannerCSS: $.extend({
+        color: '#fff',
+        fontSize: '32px',
+        fontFamily: 'helvetica, arial, sans-serif',
+        textShadow: '1px 1px #000',
+        textDecoration: 'none',
+        padding: '10px',
+        position: 'absolute',
+        zIndex: 20,
+        bottom: 0,
+        left: 0
+      }, {<%= bannerCSS %>}),
+      thirdPartyTrackingPixels: ['<%= thirdPartyTrackingPixels %>']
     };
 
     <%= jsOverrides %>

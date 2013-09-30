@@ -18,21 +18,54 @@
       clickTracker: '%%CLICK_URL_UNESC%%',
       clickTrackerEsc: '%%CLICK_URL_ESC%%',
       clickTag: '%%DEST_URL%%',
-      creative: '[%Creative%]' || '[%CreativeURL%]',
-      width: [%Width%],
-      height: [%Height%],
+      creative: {
+        // <= 767px, use mobile bigbox
+        _767: {
+          url: '[%MobileCreative%]' || '[%MobileCreativeURL%]',
+          parallax: false,
+          width: 300,
+          height: 250,
+          banner: false
+        },
+        // > 767px && <= 940px, use 940px creative
+        _940: {
+          url: '[%Creative940%]' || '[%Creative940URL%]',
+          height: [%Height%],
+          width: 940,
+          parallax: true,
+          banner: true,
+          bannerCSS: {
+            //custom css overrides for this size here
+          }
+        },
+        // >= 940px, use 1170px creative
+        _1170: {
+          url: '[%Creative1170%]' || '[%Creative1170URL%]',
+          height: [%Height%],
+          width: 1170,
+          parallax: true,
+          banner: true,
+          bannerCSS: {
+            //custom css overrides for this size here
+          }
+        }
+      },
       target: '[%Target%]',
-      parallax: [%Parallax%],
       backgroundColor: '[%BackgroundColor%]',
-      bannerCSS: {[%BannerCSS%]},
       bannerHTML: '[%BannerHTML%]',
-      mobile: {
-        breakPoint: [%MobileBreakpoint%],
-        creative: '[%MobileCreative%]' || '[%MobileCreativeURL%]',
-        width: [%MobileWidth%],
-        height: [%MobileHeight%],
-        clickTag: '[%MobileClickTag%]'
-      }
+      bannerCSS: $.extend({
+        color: '#fff',
+        fontSize: '32px',
+        fontFamily: 'helvetica, arial, sans-serif',
+        textShadow: '1px 1px #000',
+        textDecoration: 'none',
+        padding: '10px',
+        position: 'absolute',
+        zIndex: 20,
+        bottom: 0,
+        left: 0
+      }, {[%BannerCSS%]}),
+      thirdPartyTrackingPixels: ['[%ThirdPartyTrackingPixel%]']
     };
 
     [%JSOverrides%]

@@ -1,23 +1,3 @@
-/*
-
-  -- OUTLINE: --
-
-  + load
-    - configure
-    - build target container
-
-  + resize over/under 768 threshold
-    - detect mobile or desktop
-    - desktop
-      + build and style parallax container w/ bg image, clicktag, etc.
-      + render desktop pixel
-
-    - mobile
-      + build a basic 300x250 image w/ clickthrough
-      + render mobile pixel
-
-*/
-
 var wpAd = wpAd || {};
 wpAd.Enterprise = (function($){
 
@@ -41,31 +21,11 @@ wpAd.Enterprise = (function($){
     clickTrackerEsc: '',
     clickTag: '',
     target: '',
-    parallax: true,
-    creative: '',
-    width: 1170,
-    height: 460,
+    creative: {},
     backgroundColor: '#fff',
     bannerHTML: '',
-    bannerCSS: {
-      color: '#fff',
-      fontSize: '32px',
-      fontFamily: 'helvetica, arial, sans-serif',
-      textShadow: '1px 1px #000',
-      textDecoration: 'none',
-      padding: '10px',
-      position: 'absolute',
-      zIndex: 20,
-      bottom: 0,
-      left: 0
-    },
-    mobile: {
-      breakPoint: 768,
-      creative: '',
-      width: 300,
-      height: 250,
-      clickTag: ''
-    }
+    bannerCSS: {},
+    thirdPartyTrackingPixels: []
   };
 
   //cache a reference to the jQuery window object
@@ -104,12 +64,27 @@ wpAd.Enterprise = (function($){
      * Called once on initial load
      */
     init: function(){
-      this.currentState = {
-        desktop: false,
-        mobile: false
-      };
-      this.$container = this.buildContainer().appendTo($(this.config.target));
+      var val, key, largest = 0, smallest = 0;
+
+      this.$target = $(this.config.target);
+      this.breakpoints = [];
+
+      for(key in this.config.creative){
+        if(this.config.creative.hasOwnProperty(key)){
+          val = parseInt(key.replace(/_/, ''), 10);
+          if(val){
+            largest = val > largest ? val : largest;
+            smallest = !smallest || val < smallest ? val : smallest;
+            this.breakpoints.push(val);
+          }
+        }
+      }
+      this.largestBreakpoint = largest;
+      this.smallestBreakpoint = smallest;
+      this.$container = this.buildContainer().appendTo(this.$target);
+      this.addPixels(this.config.thirdPartyTrackingPixels);
       this.addListeners();
+
       return this;
     },
 
@@ -119,26 +94,41 @@ wpAd.Enterprise = (function($){
      */
     buildContainer: function(){
       return $('<div></div>').addClass('enterprise-ad-container').css({
-        position: 'relative'
+        position: 'relative',
+        margin: '0 auto'
       });
     },
 
     /**
-     * Builds the Enterprise Ad
+     * Builds the Enterprise Ad, based on container size
      */
     exec: function(){
-      var mobileWidth = $window.width() < this.config.mobile.breakPoint ? true : false;
+      var w = this.$target.outerWidth(),
+        l = this.breakpoints.length,
+        size = 0,
+        i;
 
-      //if desktop - render Enterprise ad:
-      if(!this.currentState.desktop && !mobileWidth){
-        this.currentState.desktop = true;
-        this.currentState.mobile = false;
+      //try to avoid loop in mobile environments to help performance
+      if(w <= this.smallestBreakpoint){
+        size = this.smallestBreakpoint;
+
+      //check for large screens
+      } else if(w >= this.largestBreakpoint){
+        size = this.largestBreakpoint;
+
+      //otherwise, determine best size creative to show
+      } else {
+        for(i = 0; i < l; i++){
+          if(w <= this.breakpoints[i] && w > size){
+            size = this.breakpoints[i];
+          }
+        }
+      }
+
+      //only swap out the creative if it's differnet to current one
+      if((!this.currentSize || this.currentSize !== size) && this.config.creative['_' + size]){
+        this.currentSize = size;
         this.buildEnterpriseAd();
-      //else if mobile - render mobile ad:
-      } else if(!this.currentState.mobile && mobileWidth){
-        this.currentState.desktop = false;
-        this.currentState.mobile = true;
-        this.buildMobileAd();
       }
     },
 
@@ -146,39 +136,31 @@ wpAd.Enterprise = (function($){
      * Builds and renders the enterprise unit
      */
     buildEnterpriseAd: function(){
+      var creative = this.config.creative['_' + this.currentSize];
       this.$container.empty();
+
       this.$creative = $('<a></a>').addClass('enterprise-ad').attr({
         href: this.config.clickTracker + this.config.clickTag,
         target: '_blank'
       }).css({
         display: 'block',
-        maxWidth: this.config.width + 'px',
-        height: this.config.height + 'px',
+        maxWidth: creative.width + 'px',
+        height: creative.height + 'px',
         zIndex: 10,
         textDecoration: 'none',
         position: 'relative',
-        background: this.config.backgroundColor + ' url(' + this.config.creative + ') no-repeat center center ' + (this.config.parallax ? 'fixed' : 'scroll')
+        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.parallax ? 'fixed' : 'scroll')
       }).appendTo(this.$container);
 
-      if(this.config.bannerHTML){
-        this.$banner = $(this.config.bannerHTML).css(this.config.bannerCSS).appendTo(this.$container);
+      //for centering with "margin: 0 auto":
+      this.$container.css({
+        width: creative.width + 'px'
+      });
+
+      if(creative.banner && this.config.bannerHTML){
+        this.$banner = $(this.config.bannerHTML).css(this.config.bannerCSS).css(creative.bannerCSS).appendTo(this.$container);
       }
 
-    },
-
-    /**
-     * Builds and renders the mobile unit
-     */
-    buildMobileAd: function(){
-      this.$container.empty();
-      this.$creative = $('<a></a>').addClass('enterprise-mobile-ad').attr({
-        href: this.config.clickTracker + (this.config.mobile.clickTag || this.config.clickTag),
-        target: '_blank'
-      }).css({
-        width: this.config.mobile.width + 'px',
-        height: this.config.mobile.height + 'px',
-        border: 0
-      }).append('<img src="' + this.config.mobile.creative + '" alt="Click here for more information" />').appendTo(this.$container);
     },
 
     /**
@@ -197,6 +179,27 @@ wpAd.Enterprise = (function($){
         }
       };
       $window.on('resize.enterprise', resizeFn);
+    },
+
+    addPixels: function(pixels){
+      var l = pixels.length;
+      while(l--){
+        if(pixels[l]){
+          this.addPixel(pixels[l]);
+        }
+      }
+    },
+
+    addPixel: function(url){
+      $(document.createElement('img')).attr({
+        src: url.replace(/timestamp|random|ord/ig, random),
+        height: '1',
+        width: '1',
+        alt: ''
+      }).css({
+        border: 0,
+        display: 'none'
+      }).appendTo(this.$target);
     }
 
   };

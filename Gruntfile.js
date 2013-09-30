@@ -91,23 +91,18 @@ module.exports = function (grunt) {
               clickTrackerEsc: '%%CLICK_URL_ESC%%',
               clickTag: '%%DEST_URL%%',
               target: '[%Target%]',
-              parallax: '[%Parallax%]',
-              creative: '[%Creative%]',
-              creativeURL: '[%CreativeURL%]',
-              width: '[%Width%]',
+              mobileCreative: '[%MobileCreative%]',
+              mobileCreativeURL: '[%MobileCreativeURL%]',
+              creative940: '[%Creative940%]',
+              creative940URL: '[%Creative940URL%]',
+              creative1170: '[%Creative1170%]',
+              creative1170URL: '[%Creative1170URL%]',
               height: '[%Height%]',
               backgroundColor: '[%BackgroundColor%]',
               bannerCSS: '[%BannerCSS%]',
               bannerHTML: '[%BannerHTML%]',
-              mobile: {
-                breakPoint: '[%MobileBreakpoint%]',
-                creative: '[%MobileCreative%]',
-                creativeURL: '[%MobileCreativeURL%]',
-                width: '[%MobileWidth%]',
-                height: '[%MobileHeight%]',
-                clickTag: '[%MobileClickTag%]'
-              },
-              jsOverrides: '[%JSOverrides%]'
+              thirdPartyTrackingPixels: '[%ThirdPartyTrackingPixel%]',
+              jsOverrides: '[%JSOverrides%]',
             }
           }
         },
@@ -125,22 +120,17 @@ module.exports = function (grunt) {
               clickTrackerEsc: '',
               clickTag: 'http://www.example.com',
               target: '#slug_leaderboard',
-              parallax: 'true',
-              creative: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise.jpg',
-              creativeURL: '',
-              width: '1170',
+              mobileCreative: 'http://placehold.it/300x250',
+              mobileCreativeURL: '',
+              creative940: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_940.jpg',
+              creative940URL: '',
+              creative1170: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_1170.jpg',
+              creative1170URL: '',
               height: '460',
               backgroundColor: '#fff',
               bannerCSS: '',
               bannerHTML: '<a href="#">Some text here</a>',
-              mobile: {
-                breakPoint: '768',
-                creative: 'http://www.placehold.it/300x250',
-                creativeURL: '',
-                width: '300',
-                height: '250',
-                clickTag: ''
-              },
+              thirdPartyTrackingPixels: '',
               jsOverrides: ''
             }
           }

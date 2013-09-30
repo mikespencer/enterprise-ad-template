@@ -17,7 +17,7 @@
 
   <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
 
-  <div id="slug_leaderboard" style="width:1170px;margin:0 auto">
+  <div id="slug_leaderboard" style="width:auto;margin:0 auto">
     <!-- test target for enterprise ad -->
   </div>
 
@@ -46,21 +46,54 @@
       clickTracker: '',
       clickTrackerEsc: '',
       clickTag: 'http://www.example.com',
-      creative: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise.jpg' || '',
-      width: 1170,
-      height: 460,
+      creative: {
+        // <= 767px, use mobile bigbox
+        _767: {
+          url: 'http://placehold.it/300x250' || '',
+          parallax: false,
+          width: 300,
+          height: 250,
+          banner: false
+        },
+        // > 767px && <= 940px, use 940px creative
+        _940: {
+          url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_940.jpg' || '',
+          height: 460,
+          width: 940,
+          parallax: true,
+          banner: true,
+          bannerCSS: {
+            //custom css overrides for this size here
+          }
+        },
+        // >= 940px, use 1170px creative
+        _1170: {
+          url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_1170.jpg' || '',
+          height: 460,
+          width: 1170,
+          parallax: true,
+          banner: true,
+          bannerCSS: {
+            //custom css overrides for this size here
+          }
+        }
+      },
       target: '#slug_leaderboard',
-      parallax: true,
       backgroundColor: '#fff',
-      bannerCSS: {},
       bannerHTML: '<a href="#">Some text here</a>',
-      mobile: {
-        breakPoint: 768,
-        creative: 'http://www.placehold.it/300x250' || '',
-        width: 300,
-        height: 250,
-        clickTag: ''
-      }
+      bannerCSS: $.extend({
+        color: '#fff',
+        fontSize: '32px',
+        fontFamily: 'helvetica, arial, sans-serif',
+        textShadow: '1px 1px #000',
+        textDecoration: 'none',
+        padding: '10px',
+        position: 'absolute',
+        zIndex: 20,
+        bottom: 0,
+        left: 0
+      }, {}),
+      thirdPartyTrackingPixels: ['']
     };
 
     
