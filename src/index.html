@@ -45,7 +45,7 @@
         // <= 767px, use mobile bigbox
         _767: {
           url: '<%= mobileCreative %>' || '<%= mobileCreativeURL %>',
-          parallax: false,
+          fixed: false,
           width: 300,
           height: 250,
           banner: false
@@ -55,7 +55,7 @@
           url: '<%= creative940 %>' || '<%= creative940URL %>',
           height: <%= height %>,
           width: 940,
-          parallax: true,
+          fixed: true,
           banner: true,
           bannerCSS: {
             //custom css overrides for this size here
@@ -66,7 +66,7 @@
           url: '<%= creative1170 %>' || '<%= creative1170URL %>',
           height: <%= height %>,
           width: 1170,
-          parallax: true,
+          fixed: true,
           banner: true,
           bannerCSS: {
             //custom css overrides for this size here

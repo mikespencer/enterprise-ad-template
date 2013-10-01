@@ -149,7 +149,7 @@ wpAd.Enterprise = (function($){
         zIndex: 10,
         textDecoration: 'none',
         position: 'relative',
-        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.parallax ? 'fixed' : 'scroll')
+        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.fixed ? 'fixed' : 'scroll')
       }).appendTo(this.$container);
 
       //for centering with "margin: 0 auto":
