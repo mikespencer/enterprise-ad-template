@@ -50,15 +50,15 @@
 }
 /* line 9, ../sass/style.sass */
 .enterprise-ad-container .enterprise-ad {
-  padding: 10px;
   font-size: 14px;
   color: white;
   line-height: 1.2em;
   font-family: helvetica, arial, sans-serif;
 }
-/* line 15, ../sass/style.sass */
+/* line 14, ../sass/style.sass */
 .enterprise-ad-container .enterprise-ad .content {
   width: 40%;
+  padding: 10px;
 }
 /* line 17, ../sass/style.sass */
 .enterprise-ad-container .enterprise-ad p {

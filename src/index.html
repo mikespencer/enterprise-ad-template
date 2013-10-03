@@ -47,7 +47,14 @@
           height: 250
         },
         {
-          breakpoints: [724, 940],
+          breakpoints: [724, 724],
+          url: '<%= creative724 %>' || '<%= creative724URL %>',
+          height: <%= height %>,
+          fixed: true,
+          banner: true
+        },
+        {
+          breakpoints: [725, 940],
           url: '<%= creative940 %>' || '<%= creative940URL %>',
           height: <%= height %>,
           fixed: true,
