@@ -1,7 +1,6 @@
 <!-- AD ID: %eaid! -->
 <!-- 1170x460 |  - Enterprise Ad Template -->
 
-<link rel="stylesheet" href="http://css.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/dist/css/style.min.css">
 
 <script>
   window.jQuery || document.write('<script src="http://js.washingtonpost.com/wpost/js/combo?token=20121010232000&c=true&m=true&context=eidos&r=/jquery-1.7.1.js"><\/script>');
@@ -18,53 +17,33 @@
       clickTracker: '%%CLICK_URL_UNESC%%',
       clickTrackerEsc: '%%CLICK_URL_ESC%%',
       clickTag: '%%DEST_URL%%',
-      creative: {
-        // <= 767px, use mobile bigbox
-        _767: {
+      customStylesheet: '[%CustomStylesheet%]',
+      creative: [
+        {
+          breakpoints: [false, 723],
           url: '[%MobileCreative%]' || '[%MobileCreativeURL%]',
-          fixed: false,
           width: 300,
-          height: 250,
-          banner: false
+          height: 250
         },
-        // > 767px && <= 940px, use 940px creative
-        _940: {
+        {
+          breakpoints: [724, 940],
           url: '[%Creative940%]' || '[%Creative940URL%]',
           height: [%Height%],
-          width: 940,
           fixed: true,
-          banner: true,
-          bannerCSS: {
-            //custom css overrides for this size here
-          }
+          banner: true
         },
-        // >= 940px, use 1170px creative
-        _1170: {
+        {
+          breakpoints: [941, false],
           url: '[%Creative1170%]' || '[%Creative1170URL%]',
           height: [%Height%],
           width: 1170,
           fixed: true,
-          banner: true,
-          bannerCSS: {
-            //custom css overrides for this size here
-          }
+          banner: true
         }
-      },
+      ],
       target: '[%Target%]',
       backgroundColor: '[%BackgroundColor%]',
       bannerHTML: '[%BannerHTML%]',
-      bannerCSS: $.extend({
-        color: '#fff',
-        fontSize: '32px',
-        fontFamily: 'helvetica, arial, sans-serif',
-        textShadow: '1px 1px #000',
-        textDecoration: 'none',
-        padding: '10px',
-        position: 'absolute',
-        zIndex: 20,
-        bottom: 0,
-        left: 0
-      }, {[%BannerCSS%]}),
       thirdPartyTrackingPixels: ['[%ThirdPartyTrackingPixel%]']
     };
 

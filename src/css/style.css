@@ -43,3 +43,35 @@
 .enterprise-ad-container a img {
   border: none;
 }
+
+/* line 7, ../sass/style.sass */
+.enterprise-ad-container {
+  text-decoration: none;
+}
+/* line 9, ../sass/style.sass */
+.enterprise-ad-container .enterprise-ad {
+  padding: 10px;
+  font-size: 14px;
+  color: white;
+  line-height: 1.2em;
+  font-family: helvetica, arial, sans-serif;
+}
+/* line 15, ../sass/style.sass */
+.enterprise-ad-container .enterprise-ad .content {
+  width: 40%;
+}
+/* line 17, ../sass/style.sass */
+.enterprise-ad-container .enterprise-ad p {
+  margin-bottom: 0.5em;
+}
+/* line 19, ../sass/style.sass */
+.enterprise-ad-container .enterprise-ad .logo {
+  position: absolute;
+  bottom: 0;
+  left: 85%;
+}
+
+/* line 30, ../sass/style.sass */
+#slug_leaderboard {
+  display: block !important;
+}

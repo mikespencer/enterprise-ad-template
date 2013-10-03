@@ -5,7 +5,6 @@
 </head>
 <body>
 
-<link rel="stylesheet" href="css/style.min.css">
 <div class="dev-element">
 
   <h1>Cras justo odio</h1>
@@ -46,53 +45,33 @@
       clickTracker: '',
       clickTrackerEsc: '',
       clickTag: 'http://www.example.com',
-      creative: {
-        // <= 767px, use mobile bigbox
-        _767: {
+      customStylesheet: 'css/style.min.css',
+      creative: [
+        {
+          breakpoints: [false, 723],
           url: 'http://placehold.it/300x250' || '',
-          fixed: false,
           width: 300,
-          height: 250,
-          banner: false
+          height: 250
         },
-        // > 767px && <= 940px, use 940px creative
-        _940: {
+        {
+          breakpoints: [724, 940],
           url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_940.jpg' || '',
           height: 460,
-          width: 940,
           fixed: true,
-          banner: true,
-          bannerCSS: {
-            //custom css overrides for this size here
-          }
+          banner: true
         },
-        // >= 940px, use 1170px creative
-        _1170: {
+        {
+          breakpoints: [941, false],
           url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_1170.jpg' || '',
           height: 460,
           width: 1170,
           fixed: true,
-          banner: true,
-          bannerCSS: {
-            //custom css overrides for this size here
-          }
+          banner: true
         }
-      },
+      ],
       target: '#slug_leaderboard',
-      backgroundColor: '#fff',
-      bannerHTML: '<a href="#">Some text here</a>',
-      bannerCSS: $.extend({
-        color: '#fff',
-        fontSize: '32px',
-        fontFamily: 'helvetica, arial, sans-serif',
-        textShadow: '1px 1px #000',
-        textDecoration: 'none',
-        padding: '10px',
-        position: 'absolute',
-        zIndex: 20,
-        bottom: 0,
-        left: 0
-      }, {}),
+      backgroundColor: '#555',
+      bannerHTML: '<div class="content"><p>Donec ullamcorper nulla non metus auctor fringilla.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p></div><img class="logo" src="http://placehold.it/60x100/f33/fff" />',
       thirdPartyTrackingPixels: ['']
     };
 

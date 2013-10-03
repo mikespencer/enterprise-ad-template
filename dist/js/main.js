@@ -21,11 +21,11 @@ wpAd.Enterprise = (function($){
     clickTrackerEsc: '',
     clickTag: '',
     target: '',
-    creative: {},
+    creative: [],
     backgroundColor: '#fff',
     bannerHTML: '',
-    bannerCSS: {},
-    thirdPartyTrackingPixels: []
+    thirdPartyTrackingPixels: [],
+    customStylesheet: ''
   };
 
   //cache a reference to the jQuery window object
@@ -64,24 +64,15 @@ wpAd.Enterprise = (function($){
      * Called once on initial load
      */
     init: function(){
-      var val, key, largest = 0, smallest = 0;
 
       this.$target = $(this.config.target);
-      this.breakpoints = [];
-
-      for(key in this.config.creative){
-        if(this.config.creative.hasOwnProperty(key)){
-          val = parseInt(key.replace(/_/, ''), 10);
-          if(val){
-            largest = val > largest ? val : largest;
-            smallest = !smallest || val < smallest ? val : smallest;
-            this.breakpoints.push(val);
-          }
-        }
-      }
-      this.largestBreakpoint = largest;
-      this.smallestBreakpoint = smallest;
       this.$container = this.buildContainer().appendTo(this.$target);
+
+      //add the custom stylesheet, if there is one:
+      if(this.config.customStylesheet){
+        this.$target.append('<link rel="stylesheet" type="text/css" href="' + this.config.customStylesheet + '" />');
+      }
+
       this.addPixels(this.config.thirdPartyTrackingPixels);
       this.addListeners();
 
@@ -104,30 +95,20 @@ wpAd.Enterprise = (function($){
      */
     exec: function(){
       var w = this.$target.outerWidth(),
-        l = this.breakpoints.length,
-        size = 0,
-        i;
+        creative = this.config.creative,
+        l = creative.length,
+        creativeIndex = null;
 
-      //try to avoid loop in mobile environments to help performance
-      if(w <= this.smallestBreakpoint){
-        size = this.smallestBreakpoint;
-
-      //check for large screens
-      } else if(w >= this.largestBreakpoint){
-        size = this.largestBreakpoint;
-
-      //otherwise, determine best size creative to show
-      } else {
-        for(i = 0; i < l; i++){
-          if(w <= this.breakpoints[i] && w > size){
-            size = this.breakpoints[i];
-          }
+      while(l--){
+        if((!creative[l].breakpoints[0] || w >= creative[l].breakpoints[0]) &&
+           (!creative[l].breakpoints[1] || w <= creative[l].breakpoints[1])){
+          creativeIndex = l;
+          break;
         }
       }
 
-      //only swap out the creative if it's differnet to current one
-      if((!this.currentSize || this.currentSize !== size) && this.config.creative['_' + size]){
-        this.currentSize = size;
+      if(creativeIndex !== null && creativeIndex !== this.currentCreativeIndex){
+        this.currentCreativeIndex = creativeIndex;
         this.buildEnterpriseAd();
       }
     },
@@ -136,15 +117,24 @@ wpAd.Enterprise = (function($){
      * Builds and renders the enterprise unit
      */
     buildEnterpriseAd: function(){
-      var creative = this.config.creative['_' + this.currentSize];
+      var creative = this.config.creative[this.currentCreativeIndex];
+
+      if(!creative.url){
+        return false;
+      }
+
+      //set some default fallbacks
+      creative.width = creative.width || creative.breakpoints[1] || creative.breakpoints[0];
+      creative.height = creative.height || 460;
+
+      //remove old creative
       this.$container.empty();
 
-      this.$creative = $('<a></a>').addClass('enterprise-ad').attr({
-        href: this.config.clickTracker + this.config.clickTag,
+      this.$creative = $('<a></a>').addClass('enterprise-ad sz-' + creative.width).attr({
+        href: this.config.clickTracker + (creative.clickTag || this.config.clickTag),
         target: '_blank'
       }).css({
         display: 'block',
-        maxWidth: creative.width + 'px',
         height: creative.height + 'px',
         zIndex: 10,
         textDecoration: 'none',
@@ -152,13 +142,12 @@ wpAd.Enterprise = (function($){
         background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.fixed ? 'fixed' : 'scroll')
       }).appendTo(this.$container);
 
-      //for centering with "margin: 0 auto":
       this.$container.css({
-        width: creative.width + 'px'
+        maxWidth: creative.width + 'px'
       });
 
       if(creative.banner && this.config.bannerHTML){
-        this.$banner = $(this.config.bannerHTML).css(this.config.bannerCSS).css(creative.bannerCSS).appendTo(this.$container);
+        this.$banner = $(this.config.bannerHTML).appendTo(this.$creative);
       }
 
     },
@@ -175,7 +164,7 @@ wpAd.Enterprise = (function($){
           _this.exec();
           _this.resizeTimeout = setTimeout(function(){
             _this.resizing = false;
-          }, 200);
+          }, 50);
         }
       };
       $window.on('resize.enterprise', resizeFn);

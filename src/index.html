@@ -1,6 +1,3 @@
-<!--build:css(src) css/style.min.css-->
-<link rel="stylesheet" href="css/style.css">
-<!--endbuild-->
 <div class="dev-element">
 
   <h1>Cras justo odio</h1>
@@ -41,53 +38,33 @@
       clickTracker: '<%= clickTracker %>',
       clickTrackerEsc: '<%= clickTrackerEsc %>',
       clickTag: '<%= clickTag %>',
-      creative: {
-        // <= 767px, use mobile bigbox
-        _767: {
+      customStylesheet: '<%= customStylesheet %>',
+      creative: [
+        {
+          breakpoints: [false, 723],
           url: '<%= mobileCreative %>' || '<%= mobileCreativeURL %>',
-          fixed: false,
           width: 300,
-          height: 250,
-          banner: false
+          height: 250
         },
-        // > 767px && <= 940px, use 940px creative
-        _940: {
+        {
+          breakpoints: [724, 940],
           url: '<%= creative940 %>' || '<%= creative940URL %>',
           height: <%= height %>,
-          width: 940,
           fixed: true,
-          banner: true,
-          bannerCSS: {
-            //custom css overrides for this size here
-          }
+          banner: true
         },
-        // >= 940px, use 1170px creative
-        _1170: {
+        {
+          breakpoints: [941, false],
           url: '<%= creative1170 %>' || '<%= creative1170URL %>',
           height: <%= height %>,
           width: 1170,
           fixed: true,
-          banner: true,
-          bannerCSS: {
-            //custom css overrides for this size here
-          }
+          banner: true
         }
-      },
+      ],
       target: '<%= target %>',
       backgroundColor: '<%= backgroundColor %>',
       bannerHTML: '<%= bannerHTML %>',
-      bannerCSS: $.extend({
-        color: '#fff',
-        fontSize: '32px',
-        fontFamily: 'helvetica, arial, sans-serif',
-        textShadow: '1px 1px #000',
-        textDecoration: 'none',
-        padding: '10px',
-        position: 'absolute',
-        zIndex: 20,
-        bottom: 0,
-        left: 0
-      }, {<%= bannerCSS %>}),
       thirdPartyTrackingPixels: ['<%= thirdPartyTrackingPixels %>']
     };
 

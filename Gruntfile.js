@@ -99,10 +99,10 @@ module.exports = function (grunt) {
               creative1170URL: '[%Creative1170URL%]',
               height: '[%Height%]',
               backgroundColor: '[%BackgroundColor%]',
-              bannerCSS: '[%BannerCSS%]',
+              customStylesheet: '[%CustomStylesheet%]',
               bannerHTML: '[%BannerHTML%]',
               thirdPartyTrackingPixels: '[%ThirdPartyTrackingPixel%]',
-              jsOverrides: '[%JSOverrides%]',
+              jsOverrides: '[%JSOverrides%]'
             }
           }
         },
@@ -127,9 +127,9 @@ module.exports = function (grunt) {
               creative1170: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_1170.jpg',
               creative1170URL: '',
               height: '460',
-              backgroundColor: '#fff',
-              bannerCSS: '',
-              bannerHTML: '<a href="#">Some text here</a>',
+              backgroundColor: '#555',
+              customStylesheet: 'css/style.min.css',
+              bannerHTML: '<div class="content"><p>Donec ullamcorper nulla non metus auctor fringilla.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p></div><img class="logo" src="http://placehold.it/60x100/f33/fff" />',
               thirdPartyTrackingPixels: '',
               jsOverrides: ''
             }
@@ -206,17 +206,17 @@ module.exports = function (grunt) {
       }
     },
     /* Uncomment if not using usemin task */
-    //cssmin: {
-    //  options: {
-    //    banner: '/* Built <%= grunt.template.today("mm-dd-yyyy") %> */',
-    //    report: 'gzip'
-    //  },
-    //  dist: {
-    //    files: {
-    //      '<%= yeoman.dist %>/css/style.min.css': ['<%= yeoman.app %>/css/style.css']
-    //    }
-    //  }
-    //},
+    cssmin: {
+      options: {
+        banner: '/* Built <%= grunt.template.today("mm-dd-yyyy") %> */',
+        report: 'gzip'
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/css/style.min.css': ['<%= yeoman.app %>/css/style.css']
+        }
+      }
+    },
     concurrent: {
       dist: [
         'jshint:src',
