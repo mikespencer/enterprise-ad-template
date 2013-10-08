@@ -70,7 +70,11 @@ wpAd.Enterprise = (function($){
 
       //add the custom stylesheet, if there is one:
       if(this.config.customStylesheet){
-        this.$target.append('<link rel="stylesheet" type="text/css" href="' + this.config.customStylesheet + '" />');
+        $(document.createElement('link')).attr({
+          href: this.config.customStylesheet,
+          rel: 'stylesheet',
+          type: 'text/css'
+        }).appendTo('head');
       }
 
       this.addPixels(this.config.thirdPartyTrackingPixels);
