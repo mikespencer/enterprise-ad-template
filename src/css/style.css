@@ -2,15 +2,17 @@
 .enterprise-ad-container {
   text-decoration: none;
 }
-/* line 10, ../sass/style.sass */
-.enterprise-ad-container .enterprise-ad .enterprise-logo {
+
+/* line 9, ../sass/style.sass */
+.enterprise-logo {
   position: absolute;
   bottom: 0;
   right: 4%;
   border: 0;
 }
-/* line 15, ../sass/style.sass */
-.enterprise-ad-container .enterprise-ad .enterprise-text {
+
+/* line 14, ../sass/style.sass */
+.enterprise-text {
   position: absolute;
   top: 45px;
   left: 45px;
