@@ -212,7 +212,7 @@ module.exports = function (grunt) {
     /* Uncomment if not using usemin task */
     cssmin: {
       options: {
-        banner: '/* Built <%= grunt.template.today("mm-dd-yyyy") %> */',
+        //banner: '/* Built <%= grunt.template.today("mm-dd-yyyy") %> */',
         report: 'gzip'
       },
       dist: {
