@@ -24,8 +24,7 @@ wpAd.Enterprise = (function($){
     creative: [],
     backgroundColor: '#fff',
     bannerHTML: '',
-    thirdPartyTrackingPixels: [],
-    customStylesheet: ''
+    thirdPartyTrackingPixels: []
   };
 
   //cache a reference to the jQuery window object
@@ -67,15 +66,6 @@ wpAd.Enterprise = (function($){
 
       this.$target = $(this.config.target);
       this.$container = this.buildContainer().appendTo(this.$target);
-
-      //add the custom stylesheet, if there is one:
-      if(this.config.customStylesheet){
-        $(document.createElement('link')).attr({
-          href: this.config.customStylesheet,
-          rel: 'stylesheet',
-          type: 'text/css'
-        }).appendTo('head');
-      }
 
       this.addPixels(this.config.thirdPartyTrackingPixels);
       this.addListeners();
