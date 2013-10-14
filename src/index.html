@@ -40,29 +40,29 @@
       clickTag: '<%= clickTag %>',
       creative: [
         {
-          breakpoints: [false, 723],
+          breakpoints: [false, <%= smallCreativeMinWidth %> - 1],
           url: '<%= mobileCreative %>' || '<%= mobileCreativeURL %>',
           width: 300,
           height: 250
         },
         {
-          breakpoints: [724, 724],
-          url: '<%= creative724 %>' || '<%= creative724URL %>',
-          height: <%= height %>,
+          breakpoints: [<%= smallCreativeMinWidth %>, <%= mediumCreativeMinWidth %> - 1],
+          url: '<%= smallCreative %>' || '<%= smallCreativeURL %>',
+          height: <%= smallCreativeHeightOverride %> || <%= height %>,
           fixed: true,
           banner: true
         },
         {
-          breakpoints: [725, 940],
-          url: '<%= creative940 %>' || '<%= creative940URL %>',
-          height: <%= height %>,
+          breakpoints: [<%= mediumCreativeMinWidth %>, <%= largeCreativeMinWidth %> - 1],
+          url: '<%= mediumCreative %>' || '<%= mediumCreativeURL %>',
+          height: <%= mediumCreativeHeightOverride %> || <%= height %>,
           fixed: true,
           banner: true
         },
         {
-          breakpoints: [941, false],
-          url: '<%= creative1170 %>' || '<%= creative1170URL %>',
-          height: <%= height %>,
+          breakpoints: [<%= largeCreativeMinWidth %>, false],
+          url: '<%= largeCreative %>' || '<%= largeCreativeURL %>',
+          height: <%= largeCreativeHeightOverride %> || <%= height %>,
           width: 1170,
           fixed: true,
           banner: true
@@ -71,7 +71,8 @@
       target: '<%= target %>',
       backgroundColor: '<%= backgroundColor %>',
       bannerHTML: '<%= bannerHTML %>',
-      thirdPartyTrackingPixels: ['<%= thirdPartyTrackingPixels %>']
+      thirdPartyTrackingPixels: ['<%= thirdPartyTrackingPixels %>'],
+      thirdPartyTrackingScripts: ['<%= thirdPartyTrackingScripts %>']
     };
 
     <%= jsOverrides %>
@@ -84,6 +85,7 @@
 
   })(window.jQuery);
 </script>
+
 
 
 <!--build:js js/main.min.js-->

@@ -47,29 +47,29 @@
       clickTag: 'http://www.example.com',
       creative: [
         {
-          breakpoints: [false, 723],
+          breakpoints: [false, 724 - 1],
           url: 'http://placehold.it/300x250' || '',
           width: 300,
           height: 250
         },
         {
-          breakpoints: [724, 724],
+          breakpoints: [724, 745 - 1],
           url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_724.jpg' || '',
-          height: 460,
+          height: 0 || 460,
           fixed: true,
           banner: true
         },
         {
-          breakpoints: [725, 940],
+          breakpoints: [745, 961 - 1],
           url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_940.jpg' || '',
-          height: 460,
+          height: 0 || 460,
           fixed: true,
           banner: true
         },
         {
-          breakpoints: [941, false],
+          breakpoints: [961, false],
           url: 'http://img.wpdigital.net/wp-adv/test/mstest/parallax-assets/image-sunrise_1170.jpg' || '',
-          height: 460,
+          height: 0 || 460,
           width: 1170,
           fixed: true,
           banner: true
@@ -78,10 +78,11 @@
       target: '#slug_leaderboard',
       backgroundColor: '#555',
       bannerHTML: '<div class="content"><p>Donec ullamcorper nulla non metus auctor fringilla.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p></div><img class="logo" src="http://placehold.it/60x100/f33/fff" />',
-      thirdPartyTrackingPixels: ['']
+      thirdPartyTrackingPixels: [''],
+      thirdPartyTrackingScripts: ['s.js']
     };
 
-    
+
 
     if($){
       $(window).load(function(){
@@ -91,6 +92,7 @@
 
   })(window.jQuery);
 </script>
+
 
 
 <script src="js/main.min.js"></script>

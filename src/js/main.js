@@ -24,7 +24,8 @@ wpAd.Enterprise = (function($){
     creative: [],
     backgroundColor: '#fff',
     bannerHTML: '',
-    thirdPartyTrackingPixels: []
+    thirdPartyTrackingPixels: [],
+    thirdPartyTrackingScripts: []
   };
 
   //cache a reference to the jQuery window object
@@ -63,11 +64,11 @@ wpAd.Enterprise = (function($){
      * Called once on initial load
      */
     init: function(){
-
       this.$target = $(this.config.target);
       this.$container = this.buildContainer().appendTo(this.$target);
 
       this.addPixels(this.config.thirdPartyTrackingPixels);
+      this.addTrackingScripts(this.config.thirdPartyTrackingScripts);
       this.addListeners();
 
       return this;
@@ -171,6 +172,22 @@ wpAd.Enterprise = (function($){
           this.addPixel(pixels[l]);
         }
       }
+    },
+
+    addTrackingScripts: function(scripts){
+      var l = scripts.length;
+      while(l--){
+        if(scripts[l]){
+          this.addScript(scripts[l]);
+        }
+      }
+    },
+
+    addScript: function(url){
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = url.replace(/timestamp|random|ord/ig, random);
+      (this.$target[0] || document.body).appendChild(s);
     },
 
     addPixel: function(url){

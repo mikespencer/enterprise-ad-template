@@ -19,29 +19,29 @@
       clickTag: '%%DEST_URL%%',
       creative: [
         {
-          breakpoints: [false, 723],
+          breakpoints: [false, [%SmallCreativeMinWidth%] - 1],
           url: '[%MobileCreative%]' || '[%MobileCreativeURL%]',
           width: 300,
           height: 250
         },
         {
-          breakpoints: [724, 724],
-          url: '[%Creative724%]' || '[%Creative724URL%]',
-          height: [%Height%],
+          breakpoints: [[%SmallCreativeMinWidth%], [%MediumCreativeMinWidth%] - 1],
+          url: '[%SmallCreative%]' || '[%SmallCreativeURL%]',
+          height: [%SmallCreativeHeightOverride%] || [%Height%],
           fixed: true,
           banner: true
         },
         {
-          breakpoints: [725, 940],
-          url: '[%Creative940%]' || '[%Creative940URL%]',
-          height: [%Height%],
+          breakpoints: [[%MediumCreativeMinWidth%], [%LargeCreativeMinWidth%] - 1],
+          url: '[%MediumCreative%]' || '[%MediumCreativeURL%]',
+          height: [%MediumCreativeHeightOverride%] || [%Height%],
           fixed: true,
           banner: true
         },
         {
-          breakpoints: [941, false],
-          url: '[%Creative1170%]' || '[%Creative1170URL%]',
-          height: [%Height%],
+          breakpoints: [[%LargeCreativeMinWidth%], false],
+          url: '[%LargeCreative%]' || '[%LargeCreativeURL%]',
+          height: [%LargeCreativeHeightOverride%] || [%Height%],
           width: 1170,
           fixed: true,
           banner: true
@@ -50,7 +50,8 @@
       target: '[%Target%]',
       backgroundColor: '[%BackgroundColor%]',
       bannerHTML: '[%BannerHTML%]',
-      thirdPartyTrackingPixels: ['[%ThirdPartyTrackingPixel%]']
+      thirdPartyTrackingPixels: ['[%ThirdPartyTrackingPixel%]'],
+      thirdPartyTrackingScripts: ['[%ThirdPartyTrackingScripts%]']
     };
 
     [%JSOverrides%]
@@ -63,6 +64,7 @@
 
   })(window.jQuery);
 </script>
+
 
 
 <script src="http://js.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/dist/js/main.min.js" async="true"></script>
