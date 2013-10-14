@@ -8,7 +8,6 @@ wpAd.Enterprise = (function($){
     log: function(){}
   };
 
-  var touchDevice = $('html').hasClass('touch');
 
   //if no jQuery, bail:
   if(!$){
@@ -32,6 +31,9 @@ wpAd.Enterprise = (function($){
 
   //cache a reference to the jQuery window object
   var $window = $(window);
+
+  //flag for touch devices
+  var touchDevice = $('html').hasClass('touch');
 
   //cache buster
   var random = Math.floor(Math.random() * 1E9);
