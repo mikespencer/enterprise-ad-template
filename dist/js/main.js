@@ -8,6 +8,8 @@ wpAd.Enterprise = (function($){
     log: function(){}
   };
 
+  var touchDevice = $('html').hasClass('touch');
+
   //if no jQuery, bail:
   if(!$){
     return function(){
@@ -134,7 +136,7 @@ wpAd.Enterprise = (function($){
         zIndex: 10,
         textDecoration: 'none',
         position: 'relative',
-        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.fixed ? 'fixed' : 'scroll')
+        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.fixed && !touchDevice ? 'fixed' : 'scroll')
       }).appendTo(this.$container);
 
       this.$container.css({
