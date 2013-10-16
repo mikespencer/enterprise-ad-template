@@ -8,7 +8,6 @@ wpAd.Enterprise = (function($){
     log: function(){}
   };
 
-
   //if no jQuery, bail:
   if(!$){
     return function(){
@@ -33,7 +32,7 @@ wpAd.Enterprise = (function($){
   var $window = $(window);
 
   //flag for touch devices
-  var touchDevice = $('html').hasClass('touch');
+  var mobileTouchDevice = window.orientation && $('html').hasClass('touch');
 
   //cache buster
   var random = Math.floor(Math.random() * 1E9);
@@ -138,7 +137,7 @@ wpAd.Enterprise = (function($){
         zIndex: 10,
         textDecoration: 'none',
         position: 'relative',
-        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.fixed && !touchDevice ? 'fixed' : 'scroll')
+        background: this.config.backgroundColor + ' url(' + creative.url + ') no-repeat center center ' + (creative.fixed && !mobileTouchDevice ? 'fixed' : 'scroll')
       }).appendTo(this.$container);
 
       this.$container.css({
