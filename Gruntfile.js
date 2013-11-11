@@ -42,19 +42,19 @@ module.exports = function (grunt) {
         }]
       }
     },
-    useminPrepare: {
-      options: {
-        dest: '<%= yeoman.dist %>'
-      },
-      html: '<%= yeoman.app %>/index.html'
-    },
-    usemin: {
-      options: {
-        dirs: ['<%= yeoman.dist %>']
-      },
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/css/{,*/}*.css']
-    },
+    //useminPrepare: {
+    //  options: {
+    //    dest: '<%= yeoman.dist %>'
+    //  },
+    //  html: '<%= yeoman.app %>/index.html'
+    //},
+    //usemin: {
+    //  options: {
+    //    dirs: ['<%= yeoman.dist %>']
+    //  },
+    //  html: ['<%= yeoman.dist %>/{,*/}*.html'],
+    //  css: ['<%= yeoman.dist %>/css/{,*/}*.css']
+    //},
     copy: {
       dist: {
         files: [{
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
         options: {
           banner: '<!-- AD ID: %eaid! -->' +
             '\n<!-- 1170x460 |  - Enterprise Ad Template -->' +
-            '\n\n',
+            '\n<!-- DEPENDENCIES: jQuery >= 1.7.1 -->',
           process: {
             data: {
               clickTracker: '%%CLICK_URL_UNESC%%',
@@ -110,7 +110,8 @@ module.exports = function (grunt) {
               bannerHTML: '[%BannerHTML%]',
               thirdPartyTrackingPixels: '[%ThirdPartyTrackingPixel%]',
               thirdPartyTrackingScripts: '[%ThirdPartyTrackingScripts%]',
-              jsOverrides: '[%JSOverrides%]'
+              jsOverrides: '[%JSOverrides%]',
+              supportScript: 'http://js.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/dist/js/main.min.js'
             }
           }
         },
@@ -147,7 +148,8 @@ module.exports = function (grunt) {
               bannerHTML: '<div class="content"><p>Donec ullamcorper nulla non metus auctor fringilla.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p><p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p></div><img class="logo" src="http://placehold.it/60x100/f33/fff" />',
               thirdPartyTrackingPixels: '',
               thirdPartyTrackingScripts: '',
-              jsOverrides: ''
+              jsOverrides: '',
+              supportScript: 'js/main.min.js'
             }
           }
         },
@@ -206,13 +208,12 @@ module.exports = function (grunt) {
     uglify: {
       options: {
         banner: '/* Built <%= grunt.template.today("mm-dd-yyyy") %> */\n'
-      }//,
-      /* Uncomment if not using usemin task */
-      //dist: {
-      //  files: {
-      //    '<%= yeoman.dist %>/js/main.min.js': ['<%= yeoman.app %>/js/lib/Modernizr.min.js', '<%= yeoman.app %>/js/main.js']
-      //  }
-      //}
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/js/main.min.js': ['<%= yeoman.app %>/js/lib/Modernizr.custom.js', '<%= yeoman.app %>/js/main.js']
+        }
+      }
     },
     compass: {
       dist: {
@@ -365,7 +366,7 @@ module.exports = function (grunt) {
     'jshint:src',
     'clean:dist',
     'concurrent:dist',
-    'useminPrepare',
+    //'useminPrepare',
     'concat',
     'uglify',
     'cssmin',
@@ -373,7 +374,7 @@ module.exports = function (grunt) {
     'copy:dist',
     //'imagemin',
     //'rev:dist',
-    'usemin',
+    //'usemin',
     'concat:dist',
     'concat:dev',
     'absolute:dist'

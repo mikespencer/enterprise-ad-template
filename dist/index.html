@@ -29,15 +29,23 @@
   <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
 
   <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+  <script>
+    window.jQuery || document.write('<script src="http://js.washingtonpost.com/wpost/js/combo?token=20121010232000&c=true&m=true&context=eidos&r=/jquery-1.7.1.js"><\/script>');
+  </script>
 </div>
-<script>
-  window.jQuery || document.write('<script src="http://js.washingtonpost.com/wpost/js/combo?token=20121010232000&c=true&m=true&context=eidos&r=/jquery-1.7.1.js"><\/script>');
-</script>
 
 <script>
-  var wpAd = wpAd || {};
   (function($){
+
     'use strict';
+
+    if(window.top !== window.self && window.frameElement && window.frameElement.parentNode){
+      window.frameElement.style.display = 'none';
+    }
+
+    if(!$){
+      return false;
+    }
 
     //Ad config
     var config = {
@@ -84,18 +92,13 @@
 
     
 
-    if($){
-      $(window).load(function(){
-        wpAd.enterprise = new wpAd.Enterprise(config);
-      });
-    }
+    $('head', window.top.document).append('<script src="js/main.min.js" type="text/javascript"><\/script>');
+    $(window.top).load(function(){
+      window.top.wpAd.enterprise = new window.top.wpAd.Enterprise(config);
+    });
 
-  })(window.jQuery);
+  })(window.top.jQuery);
 </script>
-
-
-
-<script src="js/main.min.js"></script>
 
 </body>
 </html>
