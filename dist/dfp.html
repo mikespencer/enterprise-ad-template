@@ -60,9 +60,20 @@
 
     [%JSOverrides%]
 
-    $('head', window.top.document).append('<script src="http://js.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/dist/js/main.min.js" type="text/javascript"><\/script>');
-    $(window.top).load(function(){
-      window.top.wpAd.enterprise = new window.top.wpAd.Enterprise(config);
+    $.ajax({
+      url: 'http://js.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/dist/js/main.min.js',
+      timeout: 2000,
+      dataType: 'script',
+      crossDomain: true,
+      cache: true,
+      success: function(){
+        window.top.wpAd.enterprise = new window.top.wpAd.Enterprise(config);
+      },
+      error: function(){
+        try{
+          window.console.log('http://js.washingtonpost.com/wp-srv/ad/public/enterprise-ad-template/dist/js/main.min.js AJAX error:', arguments);
+        } catch(e){}
+      }
     });
 
   })(window.top.jQuery);

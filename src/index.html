@@ -85,9 +85,20 @@
 
     <%= jsOverrides %>
 
-    $('head', window.top.document).append('<script src="<%= supportScript %>" type="text/javascript"><\/script>');
-    $(window.top).load(function(){
-      window.top.wpAd.enterprise = new window.top.wpAd.Enterprise(config);
+    $.ajax({
+      url: '<%= supportScript %>',
+      timeout: 2000,
+      dataType: 'script',
+      crossDomain: true,
+      cache: true,
+      success: function(){
+        window.top.wpAd.enterprise = new window.top.wpAd.Enterprise(config);
+      },
+      error: function(){
+        try{
+          window.console.log('<%= supportScript %> AJAX error:', arguments);
+        } catch(e){}
+      }
     });
 
   })(window.top.jQuery);
